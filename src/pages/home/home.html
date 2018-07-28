@@ -1,14 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Devices
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="scanDevices()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div *ngIf="!gettingDevices">
+    <ion-list>
+      <ion-list-header>
+        Paired Devices
+      </ion-list-header>
+      <ion-item (click)="selectDevice(device)" *ngFor="let device of pairedDevices">
+        {{device.name}}
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        Available Devices
+      </ion-list-header>
+      <ion-item (click)="selectDevice(device)" *ngFor='let device of unpairedDevices'>
+        {{device.name}}
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
