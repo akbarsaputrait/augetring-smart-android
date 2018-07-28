@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Set Your Schedule
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>
+    <ion-item-divider color="light">Set Duration (sec)</ion-item-divider>
+    <ion-item>
+      <ion-icon name="md-timer" item-start></ion-icon>
+      <ion-input type="number" min="0" placeholder="Duration" [(ngModel)]="duration"></ion-input>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">Set Time</ion-item-divider>
+    <ion-item *ngFor="let time of timeStarts; let in = index">
+      <ion-icon name="clock" item-start></ion-icon>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="timeStarts[in]"></ion-datetime>
+      <button color="danger" clear ion-button icon-only item-end *ngIf="timeStarts.length > 1" (click)="removeTime(in)">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-item-group>
+  <button ion-button block (click)="addTime()">Add Time</button>
+</ion-content>
+
+<ion-footer>
+  <button ion-button block (click)="saveData()" [disabled]="!duration">Save Schedule</button>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
