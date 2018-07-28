@@ -1,0 +1,7 @@
+{
+  "name": "augetring-android",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
